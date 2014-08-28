@@ -17,8 +17,8 @@ You will have to add entries to program.rb yourself.
 Program Structure
 -----------------
 
-*gene_aligner.rb contains the main algorithm
-*program.rb is a script for running the algorithm
-*tester.rb conatins a class used for testing
-*test.rb is a script for running the tests
-*helper.rb has a method for printing result's tables
+* gene_aligner.rb contains the main algorithm
+* program.rb is a script for running the algorithm
+* tester.rb conatins a class used for testing
+* test.rb is a script for running the tests
+* helper.rb has a method for printing result's tables
