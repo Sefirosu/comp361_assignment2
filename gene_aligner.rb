@@ -22,7 +22,7 @@ module GeneAligner
     return a
   end
 
-  def retrieve(a, x, y)
+  def self.retrieve(a, x, y)
     sol_one = ""
     sol_two = ""
     sol_three = []

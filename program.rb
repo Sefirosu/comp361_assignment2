@@ -1,8 +1,9 @@
 require './gene_aligner'
 
-x = 
+x = "GCC"
+y = "CCGC"
 
-result = GeneAligner.align_genes "", ""
+result = GeneAligner.align_genes x, y
 
 print result[x]
 print result[y]
