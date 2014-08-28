@@ -1,8 +1,11 @@
 module GeneAligner
   def self.align_genes(x,y)
-    result = align x, y
+    result_one = align x, y
+    result_two = align x.reverse, y
+    use_one = result_one[x.length][y.length] >= result_two[x.length][y.length]
 
-    return retrieve result, x, y
+    return retrieve result_one, x, y if use_one
+    return retrieve result_two, x.reverse, y 
   end
 
   private

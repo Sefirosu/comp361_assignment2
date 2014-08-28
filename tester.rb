@@ -48,6 +48,7 @@ class Tester
     success = (result[:cost] == exp_cost)
     status = success ? "SUCCESS" : "FAILURE"
     print "#{status} TEST#{'%03d' % num}: \'#{name}\', took: #{'%.3f' % (span_str.to_f/1000000)}ms\n"
+    print "expected:#{exp_cost}, got:#{result[:cost]}\n#{result[:string]}\n" if !success
     success
   end
 end

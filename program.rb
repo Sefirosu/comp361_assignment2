@@ -9,11 +9,18 @@ result = GeneAligner.align_genes x, y
 print result[:string]
 # Helper.print_result_table result # Uncomment this to print my table results
 
-print "\n"
+# print "\n"
 
-x = "GATCGGCAT"
-y = "CAATGTGAATC"
+# x = "GATCGGCAT"
+# y = "CAATGTGAATC"
 
-result = GeneAligner.align_genes x, y
+# result = GeneAligner.align_genes x, y
 
-print result[:string]
+# print result[:string]
+
+# x = "GATTACATACA"
+# y = "ACATACATTAG"
+# result = GeneAligner.align_genes x, y
+
+# print result[:string]
+# Helper.print_result_table result # Uncomment this to print my table results
