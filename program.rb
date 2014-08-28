@@ -5,6 +5,13 @@ y = "CCGC"
 
 result = GeneAligner.align_genes x, y
 
-print result[x] + "\n"
-print result[y] + "\n"
-print result[:cost]
+print result[:string]
+
+print "\n"
+
+x = "GATCGGCAT"
+y = "CAATGTGAATC"
+
+result = GeneAligner.align_genes x, y
+
+print result[:string]
