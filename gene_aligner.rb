@@ -1,7 +1,7 @@
 module GeneAligner
   def self.align_genes(x,y)
     result = align x, y
-
+    
     return retrieve result, x, y
   end
 
@@ -53,15 +53,17 @@ module GeneAligner
       end
     end
 
-    while j > 0 do
+    while i > 0 do
+      sol_one = x[i-1] << sol_one
       sol_two = " " << sol_two
       sol_three = [-2].concat sol_three
-      j = j-1
+      i = i-1
     end
-    while i > 0 do
+    while j > 0 do
+      sol_two = y[j-1] << sol_two
       sol_one = " " << sol_one
       sol_three = [-2].concat sol_three
-      i = i-1
+      j = j-1
     end
 
     string_representation = "#{sol_one}\n#{sol_two}\n#{generate_costs(sol_three)}\n"
@@ -83,5 +85,21 @@ module GeneAligner
       end
     end
     return cost + " (#{total})"
+  end
+
+  def self.print_result_table(results, x, y)
+    print "        "
+    y.chars.each do |char|
+      print char.rjust(3), " "
+    end
+    print "\n"
+    results.each_with_index do |row, i|
+      print "#{x[i-1].rjust(3)}|" if i > 0
+      print "   |" if i == 0
+      row.each do |num|
+        print "#{num.to_s.rjust(3)}|"
+      end
+      print "\n"
+    end
   end
 end
