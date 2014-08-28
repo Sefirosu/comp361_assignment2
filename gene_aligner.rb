@@ -1,7 +1,7 @@
 module GeneAligner
   def self.align_genes(x,y)
     result = align x, y
-    
+
     return retrieve result, x, y
   end
 
@@ -68,7 +68,7 @@ module GeneAligner
 
     string_representation = "#{sol_one}\n#{sol_two}\n#{generate_costs(sol_three)}\n"
 
-    return { x => sol_one, y => sol_two, :cost => sol_three, :string => string_representation }
+    return { x => sol_one, y => sol_two, :table => a, :cost => generate_costs(sol_three), :string => string_representation, :x => x, :y => y }
   end
 
   def self.generate_costs(values)
@@ -85,21 +85,5 @@ module GeneAligner
       end
     end
     return cost + " (#{total})"
-  end
-
-  def self.print_result_table(results, x, y)
-    print "        "
-    y.chars.each do |char|
-      print char.rjust(3), " "
-    end
-    print "\n"
-    results.each_with_index do |row, i|
-      print "#{x[i-1].rjust(3)}|" if i > 0
-      print "   |" if i == 0
-      row.each do |num|
-        print "#{num.to_s.rjust(3)}|"
-      end
-      print "\n"
-    end
   end
 end
