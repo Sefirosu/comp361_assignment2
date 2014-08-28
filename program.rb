@@ -7,6 +7,7 @@ y = "CCGC"
 result = GeneAligner.align_genes x, y
 
 print result[:string]
+# Helper.print_result_table result # Uncomment this to print my table results
 
 print "\n"
 
@@ -16,5 +17,3 @@ y = "CAATGTGAATC"
 result = GeneAligner.align_genes x, y
 
 print result[:string]
-
-Helper.print_result_table result

@@ -68,7 +68,8 @@ module GeneAligner
 
     string_representation = "#{sol_one}\n#{sol_two}\n#{generate_costs(sol_three)}\n"
 
-    return { x => sol_one, y => sol_two, :table => a, :cost => generate_costs(sol_three), :string => string_representation, :x => x, :y => y }
+    return { x => sol_one, y => sol_two, :table => a, :cost => sol_three.inject{|sum,x| sum + x },
+      :cost_string => generate_costs(sol_three), :string => string_representation, :x => x, :y => y }
   end
 
   def self.generate_costs(values)
