@@ -1,8 +1,10 @@
 require './gene_aligner'
 require './helper'
 
-x = "GCC"
-y = "CCGC"
+# x = "GCC"
+# y = "CCGC"
+x = "CCTTTTTTTT"
+y = "TTTTTTTTGG"
 
 result = GeneAligner.align_genes x, y
 

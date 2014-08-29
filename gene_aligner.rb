@@ -4,8 +4,8 @@ module GeneAligner
     result_two = align x.reverse, y
     use_one = result_one[x.length][y.length] >= result_two[x.length][y.length]
 
-    return retrieve result_one, x, y if use_one
-    return retrieve result_two, x.reverse, y 
+    return retrieve result_one, x, y, x, y if use_one
+    return retrieve result_two, x.reverse, y, x, y
   end
 
   private
@@ -26,7 +26,7 @@ module GeneAligner
     return a
   end
 
-  def self.retrieve(a, x, y)
+  def self.retrieve(a, x, y, orig_x, orig_y)
     sol_one = ""
     sol_two = ""
     sol_three = []
@@ -70,8 +70,7 @@ module GeneAligner
     end
 
     string_representation = "#{sol_one}\n#{sol_two}\n#{generate_costs(sol_three)}\n"
-
-    return { x => sol_one, y => sol_two, :table => a, :cost => sol_three.inject{|sum,x| sum + x },
+    return { orig_x => sol_one, orig_y => sol_two, :table => a, :cost => sol_three.inject{|sum,x| sum + x },
       :cost_string => generate_costs(sol_three), :string => string_representation, :x => x, :y => y }
   end
 

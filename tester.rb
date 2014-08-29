@@ -33,10 +33,12 @@ class Tester
     start = Time.now
     result = GeneAligner.align_genes x, y
     span = Time.now - start
+    print "span:#{span}"
     span_str = Time.at(span).strftime("%9N")
     success = (result[x] == exp_x) && (result[y] == exp_y) && (result[:cost_string] == exp_cost)
     status = success ? "SUCCESS" : "FAILURE"
-    print "#{status} TEST#{'%03d' % num}: \'#{name}\', took: #{'%.3f' % (span_str.to_f/1000000)}ms\n"
+    print "#{status} TEST#{'%03d' % num}: #{'%30s' % name}, took: #{'%.3f' % (span_str.to_f/1000000)}ms, n = #{x.length > y.length ? x.length : y.length}\n"
+    print "expected:#{exp_cost}, got:#{result[:cost_string]}\n#{result[:string]}\n" if !success
     success
   end
 
@@ -47,7 +49,7 @@ class Tester
     span_str = Time.at(span).strftime("%9N")
     success = (result[:cost] == exp_cost)
     status = success ? "SUCCESS" : "FAILURE"
-    print "#{status} TEST#{'%03d' % num}: \'#{name}\', took: #{'%.3f' % (span_str.to_f/1000000)}ms\n"
+    print "#{status} TEST#{'%03d' % num}: #{'%30s' % name}, took: #{'%.3f' % (span_str.to_f/1000000)}ms, n = #{x.length > y.length ? x.length : y.length}\n"
     print "expected:#{exp_cost}, got:#{result[:cost]}\n#{result[:string]}\n" if !success
     success
   end
