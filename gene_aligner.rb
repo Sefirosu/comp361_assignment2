@@ -1,4 +1,22 @@
+#require 'byebug'#used for local debugging
 module GeneAligner
+
+  @@align_step = 0
+  @@retrieve_step = 0
+
+  def self.align_step
+    @@align_step
+  end
+
+  def self.retrieve_step
+    @@retrieve_step
+  end
+
+  def self.reset_barometers
+    @@align_step = 0
+    @@retrieve_step = 0
+  end
+
   def self.align_genes(x,y)
     result_one = align x, y
     result_two = align x.reverse, y
@@ -21,6 +39,7 @@ module GeneAligner
         x_ins = a[i-1][j] - 2
         y_ins = a[i][j-1] - 2
         a[i][j] = [both, x_ins, y_ins].max
+        @@align_step = @@align_step + 1
       end
     end
     return a
@@ -34,6 +53,8 @@ module GeneAligner
     j = y.length
 
     while i != 0 && j != 0 do
+      @@retrieve_step = @@retrieve_step + 1
+
       both = a[i-1][j-1] + ((x[i-1] == y[j-1]) ? 1 : -1)
       x_ins = a[i-1][j] - 2
       y_ins = a[i][j-1] - 2
@@ -57,12 +78,14 @@ module GeneAligner
     end
 
     while i > 0 do
+      @@retrieve_step = @@retrieve_step + 1
       sol_one = x[i-1] << sol_one
       sol_two = " " << sol_two
       sol_three = [-2].concat sol_three
       i = i-1
     end
     while j > 0 do
+      @@retrieve_step = @@retrieve_step + 1
       sol_two = y[j-1] << sol_two
       sol_one = " " << sol_one
       sol_three = [-2].concat sol_three
@@ -71,7 +94,7 @@ module GeneAligner
 
     string_representation = "#{sol_one}\n#{sol_two}\n#{generate_costs(sol_three)}\n"
     return { orig_x => sol_one, orig_y => sol_two, :table => a, :cost => sol_three.inject{|sum,x| sum + x },
-      :cost_string => generate_costs(sol_three), :string => string_representation, :x => x, :y => y }
+             :cost_string => generate_costs(sol_three), :string => string_representation, :x => x, :y => y }
   end
 
   def self.generate_costs(values)
