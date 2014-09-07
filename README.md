@@ -10,7 +10,7 @@ You should be able to just run it on the command line as such:
 * For the tests:   ruby test.rb
 
 Unfortunately I haven't gone to the effort of adding commandline parameters.
-You will have to add entries to program.rb yourself.
+You will have to add entries to program.rb or test.rb yourself, following the examples I have already inserted.
 
 Program Structure
 -----------------
